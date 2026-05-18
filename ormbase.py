@@ -11,15 +11,16 @@ def register_table(name):
             return func
         return decorator
 
+class BaseModel(Model):
+    class Meta:
+        database = db
+
 @register_table("Person")
-class Person(Model):
+class Person(BaseModel):
     name = CharField()
     birthday = DateField()
     is_relative = BooleanField()
 
-
-    class Meta:
-        database = db
 
 db.connect()
 
